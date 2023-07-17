@@ -26,7 +26,7 @@ int sense_category(double selmu_truestart, double selmu_trueend, int selmu_truef
   }
 }
 
-void extract_tof_from_microtree_mc_draw(){
+void NEW_extract_tof_from_microtree_mc_draw(){
 
 	gROOT->SetBatch();
 
@@ -38,26 +38,19 @@ void extract_tof_from_microtree_mc_draw(){
   Experiment exp("nd280");
 
   SampleGroup run8air("run8air");
-  SampleGroup run8water("run8water");
 
   DataSample* run8air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P7_V12_FHC_run4air_MC_default_settings.root");
   DataSample* run8air_data     = new DataSample("/data/aspeers/ToF_Systematics/P7_V13_FHC_run4air_Data_default_settings.root");
   SampleGroup run8air("run8air");
 
-  DataSample* run8water_mc     = new DataSample("/data/aspeers/ToF_Systematics/P7_V12_FHC_run8water_MC_default_settings.root");
-  DataSample* run8water_data     = new DataSample("/data/aspeers/ToF_Systematics/P7_V13_FHC_run8water_Data_default_settings.root");
-  SampleGroup run8water("run8water");
-
   // run2air.AddDataSample(run2air_data);
   run8air.AddMCSample("magnet", run8air_mc);
   run8air.AddDataSample(run8air_data);
 
-  run8water.AddMCSample("magnet", run8water_mc);
-  run8water.AddDataSample(run8water_data);
 
   // run2air.AddMCSample("sandmuon_nu", sandmu_nu);
   exp.AddSampleGroup( "run8air",   run8air    );
-  exp.AddSampleGroup( "run8water",   run8water    );
+
 
   const int nsense = 5;
   int sense_leg[nsense] = { 0, 1, 2, 3, -10 };
@@ -119,17 +112,11 @@ TString Fgd1Fwdvar[] = {
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] >= Fgd1Fwd_trueendpos[0][2]","","NOAUTOLABELS");
     fwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] >= Fgd1Fwd_trueendpos[0][2]","","NOAUTOLABELS");
-    fwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] < Fgd1Fwd_trueendpos[0][2]","","NOAUTOLABELS");
     bwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] < Fgd1Fwd_trueendpos[0][2]","","NOAUTOLABELS");
-    bwd->Add(draw.GetLastStackTotal());
-
+	
     draw.Draw(*run8air_data,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0","","NOAUTOLABELS");
-    data->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_data,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0","","NOAUTOLABELS");
     data->Add(draw.GetLastStackTotal());
 
 
@@ -167,33 +154,21 @@ TString Fgd1Fwdvar[] = {
     if(ivar<2){
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_truepos[0][2] >= Fgd1Bwd_trueendpos[0][2]","","NOAUTOLABELS");
         fwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_truepos[0][2] >= Fgd1Bwd_trueendpos[0][2] ","","NOAUTOLABELS");
-        fwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_truepos[0][2] < Fgd1Bwd_trueendpos[0][2]","","NOAUTOLABELS");
         bwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_truepos[0][2] < Fgd1Bwd_trueendpos[0][2] ","","NOAUTOLABELS");
-        bwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_data,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0","","NOAUTOLABELS");
-        data->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_data,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0","","NOAUTOLABELS");
         data->Add(draw.GetLastStackTotal());
     }
     else{
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_isECAL!=-1 && Fgd1Bwd_truepos[0][2] >= Fgd1Bwd_trueendpos[0][2] ","","NOAUTOLABELS");
         fwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_isECAL!=-1 && Fgd1Bwd_truepos[0][2] >= Fgd1Bwd_trueendpos[0][2] ","","NOAUTOLABELS");
-        fwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_isECAL!=-1 && Fgd1Bwd_truepos[0][2] < Fgd1Bwd_trueendpos[0][2] ","","NOAUTOLABELS");
         bwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_isECAL!=-1 && Fgd1Bwd_truepos[0][2] < Fgd1Bwd_trueendpos[0][2]","","NOAUTOLABELS");
-        bwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_data,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_isECAL!=-1 ","","NOAUTOLABELS");
-        data->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_data,Form("%s[0]",Fgd1Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Bwd>0 && Fgd1Bwd_isECAL!=-1 ","","NOAUTOLABELS");
         data->Add(draw.GetLastStackTotal());
     }
     
@@ -226,17 +201,11 @@ TString Fgd1Fwdvar[] = {
     
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HAFwd>0 && Fgd1HAFwd_truepos[0][2] >= Fgd1HAFwd_trueendpos[0][2] && Fgd1HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     fwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd1HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HAFwd>0 && Fgd1HAFwd_truepos[0][2] >= Fgd1HAFwd_trueendpos[0][2] && Fgd1HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    fwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HAFwd>0 && Fgd1HAFwd_truepos[0][2] < Fgd1HAFwd_trueendpos[0][2] && Fgd1HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     bwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd1HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HAFwd>0 && Fgd1HAFwd_truepos[0][2] < Fgd1HAFwd_trueendpos[0][2] && Fgd1HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    bwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_data,Form("%s[0]",Fgd1HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HAFwd>0","","NOAUTOLABELS");
-    data->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_data,Form("%s[0]",Fgd1HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HAFwd>0","","NOAUTOLABELS");
     data->Add(draw.GetLastStackTotal());
     
     fwd->Write();
@@ -267,17 +236,11 @@ TString Fgd1Fwdvar[] = {
     
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HABwd>0 && Fgd1HABwd_truepos[0][2] >= Fgd1HABwd_trueendpos[0][2] && Fgd1HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     fwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd1HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HABwd>0 && Fgd1HABwd_truepos[0][2] >= Fgd1HABwd_trueendpos[0][2] && Fgd1HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    fwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HABwd>0 && Fgd1HABwd_truepos[0][2] < Fgd1HABwd_trueendpos[0][2] && Fgd1HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     bwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd1HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HABwd>0 && Fgd1HABwd_truepos[0][2] < Fgd1HABwd_trueendpos[0][2] && Fgd1HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    bwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_data,Form("%s[0]",Fgd1HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HABwd>0","","NOAUTOLABELS");
-    data->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_data,Form("%s[0]",Fgd1HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd1HABwd>0","","NOAUTOLABELS");
     data->Add(draw.GetLastStackTotal());
     
     fwd->Write();
@@ -315,17 +278,11 @@ TString Fgd1Fwdvar[] = {
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd2Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Fwd>0 && Fgd2Fwd_truepos[0][2] >= Fgd2Fwd_trueendpos[0][2]","","NOAUTOLABELS");
     fwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd2Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Fwd>0 && Fgd2Fwd_truepos[0][2] >= Fgd2Fwd_trueendpos[0][2]","","NOAUTOLABELS");
-    fwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd2Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Fwd>0 && Fgd2Fwd_truepos[0][2] < Fgd2Fwd_trueendpos[0][2]","","NOAUTOLABELS");
     bwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd2Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Fwd>0 && Fgd2Fwd_truepos[0][2] < Fgd2Fwd_trueendpos[0][2]","","NOAUTOLABELS");
-    bwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_data,Form("%s[0]",Fgd2Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Fwd>0","","NOAUTOLABELS");
-    data->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_data,Form("%s[0]",Fgd2Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Fwd>0","","NOAUTOLABELS");
     data->Add(draw.GetLastStackTotal());
 
 
@@ -362,33 +319,21 @@ TString Fgd1Fwdvar[] = {
     if(ivar==0){
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_truepos[0][2] >= Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
         fwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_truepos[0][2] >= Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
-        fwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_truepos[0][2] < Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
         bwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_truepos[0][2] < Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
-        bwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_data,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0","","NOAUTOLABELS");
-        data->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_data,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0","","NOAUTOLABELS");
         data->Add(draw.GetLastStackTotal());
     }
     else{
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_isECAL!=-1 && Fgd2Bwd_truepos[0][2] >= Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
         fwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_isECAL!=-1 && Fgd2Bwd_truepos[0][2] >= Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
-        fwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_isECAL!=-1 && Fgd2Bwd_truepos[0][2] < Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
         bwd->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_mc,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_isECAL!=-1 && Fgd2Bwd_truepos[0][2] < Fgd2Bwd_trueendpos[0][2]","","NOAUTOLABELS");
-        bwd->Add(draw.GetLastStackTotal());
 
         draw.Draw(*run8air_data,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_isECAL!=-1 ","","NOAUTOLABELS");
-        data->Add(draw.GetLastStackTotal());
-        draw.Draw(*run8water_data,Form("%s[0]",Fgd2Bwdvar[ivar].Data()),120,-30, 30,"all","NFgd2Bwd>0 && Fgd2Bwd_isECAL!=-1 ","","NOAUTOLABELS");
         data->Add(draw.GetLastStackTotal());
     }
     
@@ -424,17 +369,11 @@ TString Fgd1Fwdvar[] = {
     
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd2HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HAFwd>0 && Fgd2HAFwd_truepos[0][2] >= Fgd2HAFwd_trueendpos[0][2] && Fgd2HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     fwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd2HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HAFwd>0 && Fgd2HAFwd_truepos[0][2] >= Fgd2HAFwd_trueendpos[0][2] && Fgd2HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    fwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd2HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HAFwd>0 && Fgd2HAFwd_truepos[0][2] < Fgd2HAFwd_trueendpos[0][2] && Fgd2HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     bwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd2HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HAFwd>0 && Fgd2HAFwd_truepos[0][2] < Fgd2HAFwd_trueendpos[0][2] && Fgd2HAFwd_EndStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    bwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_data,Form("%s[0]",Fgd2HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HAFwd>0","","NOAUTOLABELS");
-    data->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_data,Form("%s[0]",Fgd2HAFwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HAFwd>0","","NOAUTOLABELS");
     data->Add(draw.GetLastStackTotal());
     
     fwd->Write();
@@ -465,17 +404,11 @@ TString Fgd1Fwdvar[] = {
     
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd2HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HABwd>0 && Fgd2HABwd_truepos[0][2] >= Fgd2HABwd_trueendpos[0][2] && Fgd2HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     fwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd2HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HABwd>0 && Fgd2HABwd_truepos[0][2] >= Fgd2HABwd_trueendpos[0][2] && Fgd2HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    fwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd2HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HABwd>0 && Fgd2HABwd_truepos[0][2] < Fgd2HABwd_trueendpos[0][2] && Fgd2HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
     bwd->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_mc,Form("%s[0]",Fgd2HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HABwd>0 && Fgd2HABwd_truepos[0][2] < Fgd2HABwd_trueendpos[0][2] && Fgd2HABwd_StartStop_ECALSMRDFV != -1","","NOAUTOLABELS");
-    bwd->Add(draw.GetLastStackTotal());
 
     draw.Draw(*run8air_data,Form("%s[0]",Fgd2HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HABwd>0","","NOAUTOLABELS");
-    data->Add(draw.GetLastStackTotal());
-    draw.Draw(*run8water_data,Form("%s[0]",Fgd2HABwdvar[ivar].Data()),120,-30, 30,"all","NFgd2HABwd>0","","NOAUTOLABELS");
     data->Add(draw.GetLastStackTotal());
     
     fwd->Write();
