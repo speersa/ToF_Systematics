@@ -30,10 +30,19 @@ void NEW_extract_tof_from_microtree_mc_draw(){
 
 	gROOT->SetBatch();
 
-  //=== Inizialize DrawingTools                                                                         
+  //=== Inizialize DrawingTools
+  gROOT->SetBatch();  
   DrawingTools draw("/home/t2k/aspeers/PROD7_validation/testing/MultiPiAnalysis_TEST.root");//option 3 for T2KStyle = publication/paper
   draw.SetStackFillStyle(3254);
+  
+  float win_scale = 0.75;
+  int n_wide(2);
+  int n_high(2);
 
+	TCanvas* canvas = new TCanvas("canvas", "canvas", 750*n_wide*win_scale, 600*n_high*win_scale);
+	
+	canvas->Print("Plots.pdf[");
+	
   //=== Inizialize Experiment     
   Experiment exp("nd280");
 
@@ -42,14 +51,16 @@ void NEW_extract_tof_from_microtree_mc_draw(){
   DataSample* run8air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P7_V12_FHC_run4air_MC_default_settings.root");
   DataSample* run8air_data     = new DataSample("/data/aspeers/ToF_Systematics/P7_V13_FHC_run4air_Data_default_settings.root");
   SampleGroup run8air("run8air");
-
-  // run2air.AddDataSample(run2air_data);
   run8air.AddMCSample("magnet", run8air_mc);
   run8air.AddDataSample(run8air_data);
-
-
-  // run2air.AddMCSample("sandmuon_nu", sandmu_nu);
   exp.AddSampleGroup( "run8air",   run8air    );
+  
+  DataSample* prod6_mc = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run4air_MC_default_settings_OFFICIAL.root");
+  DataSample* prod6_data = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run4air_Data_default_settings.root");
+  SampleGroup prod6("prod6");
+  prod6.AddMCSample("magnet", prod6_mc);
+  prod6.AddDataSample(prod6_data);
+  exp.AddSampleGroup("prod6", prod6);
 
 
   const int nsense = 5;
@@ -111,13 +122,22 @@ TString Fgd1Fwdvar[] = {
     TH1D* data= new TH1D(Form("%s_data", Fgd1Fwdvar[ivar].Data()), Form("%s Data", Fgd1Fwdvar[ivar].Data()), 120, -30, 30);;
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] >= Fgd1Fwd_trueendpos[0][2]","","NOAUTOLABELS");
+	fwd->Add(draw.GetLastStackTotal());
+	draw.Draw(*prod6_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] >= Fgd1Fwd_trueendpos[0][2]","same","NOAUTOLABELS");
     fwd->Add(draw.GetLastStackTotal());
+	canvas->Print("Plots.pdf");
 
     draw.Draw(*run8air_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] < Fgd1Fwd_trueendpos[0][2]","","NOAUTOLABELS");
+	bwd->Add(draw.GetLastStackTotal());
+	draw.Draw(*prod6_mc,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0 && Fgd1Fwd_truepos[0][2] < Fgd1Fwd_trueendpos[0][2]","same","NOAUTOLABELS");
     bwd->Add(draw.GetLastStackTotal());
+	canvas->Print("Plots.pdf");
 	
     draw.Draw(*run8air_data,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0","","NOAUTOLABELS");
+	data->Add(draw.GetLastStackTotal());
+	draw.Draw(*prod6_data,Form("%s[0]",Fgd1Fwdvar[ivar].Data()),120,-30, 30,"all","NFgd1Fwd>0","same","NOAUTOLABELS");
     data->Add(draw.GetLastStackTotal());
+	canvas->Print("Plots.pdf");
 
 
     fwd->Write();
@@ -422,4 +442,5 @@ TString Fgd1Fwdvar[] = {
 
 
 ff->Close();
+canvas->Print("Plots.pdf]");
 }

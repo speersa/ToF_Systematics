@@ -2,8 +2,8 @@
 JDL_FILE="ToF.jdl" #Name of produced .jdl file
 EXECUTABLE="/home/t2k/aspeers/ToF_Systematics/exec_tof_files_batch.sh"
 #DATA_DIRECTORY="/data/aspeers/4pi_Selection/mcp/P6AA/P6AA_FHC_flattrees"
-DATA_DIRECTORY="/data/aspeers/ToF_Systematics/flattrees/P7_V13_run4_air_rdp"
-OUTFILE_DIR="/data/aspeers/ToF_Systematics/P7_V13_FHC_run4air_Data_default_settings"
+DATA_DIRECTORY="/data/aspeers/ToF_Systematics/flattrees/P6AA_run4_air_rdp"
+OUTFILE_DIR="/data/aspeers/ToF_Systematics/P6AA_FHC_run4air_Data_default_settings"
 
 # Write JDL file header
 #notification=Never #Lots of jobs => lots of emails. Keep it like this for less spam
