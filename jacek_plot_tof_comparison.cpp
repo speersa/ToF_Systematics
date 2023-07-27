@@ -1,11 +1,3 @@
-void format_hist(TH1D* hist, EColor col, int style=1, int width=2, int scale=100) {
-  hist->SetLineColor(col);
-  hist->SetLineWidth(width);
-  hist->SetLineStyle(style);
-  hist->Scale(scale/hist->Integral());
-}
-
-
 void plot_tof_comparison() {
   gROOT->SetBatch();
   
@@ -29,17 +21,17 @@ void plot_tof_comparison() {
     
     TH1D *temp1; p7->GetObject(keyp7->GetName(), temp1);
     if (!temp1) continue; // just a precaution
-    format_hist(temp1, kBlue);
+    temp1->SetLineColor(kBlue);
     
     TH1D *temp2; p6->GetObject(keyp7->GetName(), temp2); // get the histogram with the same name
     if (!temp2) { delete temp1; continue; } // just a precaution
-    format_hist(temp2, kRed);
+    temp2->SetLineColor(kRed);
     
-    THStack *hs = new THStack("hs",Form("%s;ToF (ns);Entries (%%)",keyp7->GetName()));
+    THStack *hs = new THStack("hs",Form("%s",keyp7->GetName()));
     hs->Add(temp1, "hist");
     hs->Add(temp2, "hist");
     
-    auto legend = new TLegend(0.1,0.8,0.28,0.9);
+    TLegend *legend = new TLegend(0.1,0.7,0.48,0.9);
     legend->AddEntry(temp1, "Production 7", "l");
     legend->AddEntry(temp2, "Production 6", "l");
     
