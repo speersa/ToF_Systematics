@@ -48,10 +48,8 @@ void NEW_extract_tof_from_microtree_mc_draw(){
 
   SampleGroup run8air("run8air");
 
-  //DataSample* run8air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P7_V12_FHC_run4air_MC_default_settings.root");
-  //DataSample* run8air_data     = new DataSample("/data/aspeers/ToF_Systematics/P7_V13_FHC_run4air_Data_default_settings.root");
   DataSample* run8air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run4air_MC_default_settings_OFFICIAL.root");
-  DataSample* run8air_data     = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run4air_Data_default_settings.root");
+  DataSample* run8air_data     = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run4air_Data_default_settings_OFFICIAL.root");
   SampleGroup run8air("run8air");
   run8air.AddMCSample("magnet", run8air_mc);
   run8air.AddDataSample(run8air_data);
