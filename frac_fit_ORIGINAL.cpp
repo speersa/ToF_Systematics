@@ -159,7 +159,7 @@ double manual_chi2_test(TH1*mc, TH1* data, bool over_ndf = false){
     int nmcbins = mc->GetNbinsX();
     int ndatabins = data->GetNbinsX();
 
-    if (nmcbins != ndatabins) throw std::invalid_argument("nmcbins != ndatabins");
+    if (nmcbins != ndatabins) throw;
     int ndf = nmcbins - 1;
 
     TH1* mc_clone = dynamic_cast<TH1*>(mc->Clone());
@@ -200,7 +200,7 @@ void convolute_1d(TH1* mc, TH1* kernel, TH1D*convoluted_mc){
     int nconvolutedbins = convoluted_mc->GetNbinsX();
     std::cout << nmcbins << " " << nkernelbins << " " << nconvolutedbins << std::endl;
 
-    if (nmcbins != nconvolutedbins || nmcbins != nkernelbins) throw std::invalid_argument("nmcbins != nconvolutedbins || nmcbins != nkernelbins");
+    if (nmcbins != nconvolutedbins || nmcbins != nkernelbins) throw;
 
 
     double mc_integral = mc->Integral();
@@ -273,9 +273,9 @@ void apply_correction(TH1D *mchist, TH1D* corrected_mc, double mu,  double sigma
 }
 
 
-void frac_fit(){
+void frac_fit_ORIGINAL(){
     
-std::string output_folder = "/home/t2k/aspeers/ToF_Systematics/frac_fit_plots/";
+std::string output_folder = "/home/t2k/yxu/banffworkbench/figures/tof_plots/grid_search_sand_thesisRevision/";
 std::string suffix = ".pdf";
 std::string xxstatus = " not Normalised";
 
@@ -291,10 +291,13 @@ std::string xxstatus = " not Normalised";
 
 
 // run8 good MC & data. Dont touch
-TFile *file_mc = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_MC_run4air.root");
-TFile *file_data = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_Data_run4air.root");
-TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/20220704_tofsyst_run8_kinematic_sand.root");
+//TFile *file_mc = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/mc_master_119_mc_nominal.root");
+//TFile *file_data = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/data_validation_master_119.root");
+//TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/20220704_tofsyst_run8_kinematic_sand.root");
 
+TFile *file_mc = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/mc_master_119_mc_nominal.root");
+TFile *file_data = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/data_validation_master_119.root");
+TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/20220704_tofsyst_run8_kinematic_sand.root");
 
 // FHC run2-4 good MC & data. Dont touch
 // TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/20220704_tofsyst_run8_kinematic_sand.root");
@@ -320,7 +323,6 @@ for (int i = 0; i < 24; i++){
 
     string sample(sample_names[i]);
     string _bwd("_bwd");
-	string _data("_data");
 
     TH1D *data, *mc_fwd, *mc_bwd;
 
@@ -352,7 +354,7 @@ for (int i = 0; i < 24; i++){
     sand_bwd->Scale(4 * 1.19/(2.24 + 3.47 + 3.32 + 2.66));
 
 
-	//  TH1D mc_combined = *mc_fwd + *mc_bwd;
+    // TH1D mc_combined = *mc_fwd + *mc_bwd;
     TH1D mc_combined = *mc_fwd + *mc_bwd  + *sand_fwd + *sand_bwd;
 
     std::cout << sample << " " << mc_fwd->Integral() << " " << mc_bwd->Integral() << std::endl;
@@ -440,21 +442,21 @@ for (int i = 0; i < 24; i++){
                     mc_array->Add(corrected_mc_negative);
 
                     TFractionFitter* fit = new TFractionFitter(data, mc_array, "Q"); // initialise
-					
+
                     fit->Constrain(0,0.0,1.0);               // constrain fraction 1 to be between 0 and 1
                     fit->Constrain(1,0.0,1.0);               // constrain fraction 1 to be between 0 and 1
                     fit->Constrain(2,0.0,1.0);               // constrain fraction 1 to be between 0 and 1
 
                     fit->SetRangeX(1,Nbins);                    // use only the first 15 bins in the fit
                     Int_t status = fit->Fit();               // perform the fit
-                     std::cout << "fit status: " << status << std::endl;
+                    // std::cout << "fit status: " << status << std::endl;
                     if (status != 0) continue;
                     double partition[3];
                     double error[3];
                     
                     for (int j = 0; j < 3; j++){
                         fit->GetResult(j, partition[j], error[j]);
-                         std::cout << partition[j] << std::endl;
+                        // std::cout << partition[j] << std::endl;
                     }
                     corrected_mc->Scale(partition[0]);
                     corrected_mc_positive->Scale(partition[1]);
