@@ -278,6 +278,7 @@ void frac_fit(){
 std::string output_folder = "/home/t2k/aspeers/ToF_Systematics/frac_fit_plots/";
 std::string suffix = ".pdf";
 std::string xxstatus = " not Normalised";
+gROOT->SetBatch();
 
 // TFile *file_data = TFile::Open("/data/yxu/general_outputs/th1s/20220507_time_slip_corr/r8air+water_267_data.root");
     
@@ -290,9 +291,9 @@ std::string xxstatus = " not Normalised";
 // TFile *file_mc = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/mc_0611_nocorrection.root");
 
 
-// run8 good MC & data. Dont touch
-TFile *file_mc = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_MC_run4air.root");
-TFile *file_data = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_Data_run4air.root");
+// run8 good MC & data. touch
+TFile *file_mc = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_MC_run8water.root");
+TFile *file_data = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_Data_run8water.root");
 TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/20220704_tofsyst_run8_kinematic_sand.root");
 
 
@@ -315,7 +316,7 @@ TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_
 // TFile *file_mc = TFile::Open("/data/yxu/general_outputs/th1s/20220525_grid_search/r8air+water_267_100.root");
 float bestfit_parameters[24][5];
 
-for (int i = 0; i < 24; i++){
+for (int i = 19; i < 20; i++){
     gStyle->SetOptTitle(0);
 
     string sample(sample_names[i]);
