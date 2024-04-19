@@ -1,9 +1,0 @@
-Info in <TGeoManager::CloseGeometry>: Geometry loaded from file...
-Info in <TGeoManager::SetTopVolume>: Top volume is t2k. Master volume is t2k
-Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
-Info in <TGeoManager::Voxelize>: Voxelizing...
-Info in <TGeoManager::CountLevels>: max level = 9, max placements = 1946
-Info in <TGeoManager::CloseGeometry>: 67169 nodes/ 728 volume UID's in ND280 Detector Geometry
-Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
-Info in <TGeoNodeCache::BuildIDArray>: --- node ID tracking enabled, size=537356 Bytes
-
