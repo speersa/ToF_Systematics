@@ -292,9 +292,11 @@ gROOT->SetBatch();
 
 
 // run8 good MC & data. touch
-TFile *file_mc = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_MC_run8water.root");
-TFile *file_data = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_Data_run8water.root");
-TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/20220704_tofsyst_run8_kinematic_sand.root");
+TFile *file_mc = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_MC_run4air.root");
+TFile *file_data = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7E_FHC_Data.root");
+TFile *file_sand = TFile::Open("/home/t2k/aspeers/ToF_Systematics/ToF_Output_P7_MC_run3_SAND.root");
+
+//TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_draw/20220704_tofsyst_run8_kinematic_sand.root");
 
 
 // FHC run2-4 good MC & data. Dont touch
@@ -314,9 +316,9 @@ TFile *file_sand = TFile::Open("/data/yxu/general_outputs/th1s/20220602_tofsyst_
 // TFile *file_mc = TFile::Open("/data/yxu/general_outputs/th1s/20220525_grid_search/r8air+water_267_mc_60.root");
 
 // TFile *file_mc = TFile::Open("/data/yxu/general_outputs/th1s/20220525_grid_search/r8air+water_267_100.root");
-float bestfit_parameters[24][5];
+float bestfit_parameters[24][7];
 
-for (int i = 19; i < 20; i++){
+for (int i = 0; i < 24; i++){
     gStyle->SetOptTitle(0);
 
     string sample(sample_names[i]);
@@ -334,11 +336,12 @@ for (int i = 19; i < 20; i++){
     
 
     // Sand files. Comment out to ignore sand.
+	
     TH1D *sand_fwd, *sand_bwd;
 
     file_sand->GetObject(sample.c_str(), sand_fwd);
     file_sand->GetObject((sample + _bwd).c_str(), sand_bwd);
-
+	
     // Sand already counted twice when extracting TH1s, so no need to do it again
     // Run 8 scaling
     // sand_fwd->Scale(2 * 19.0/(44.53 + 27.17));
@@ -349,12 +352,13 @@ for (int i = 19; i < 20; i++){
     // sand_bwd->Scale(5 * 19.0/(16.8 + 12.0 + 30.8 + 36.1 + 36.1));
 
     // Run 5-9 scaling
-    sand_fwd->Scale(4 * 1.19/(2.24 + 3.47 + 3.32 + 2.66));
-    sand_bwd->Scale(4 * 1.19/(2.24 + 3.47 + 3.32 + 2.66));
+    //sand_fwd->Scale(4 * 1.19/(2.24 + 3.47 + 3.32 + 2.66));
+    //sand_bwd->Scale(4 * 1.19/(2.24 + 3.47 + 3.32 + 2.66));
 
 
 	//  TH1D mc_combined = *mc_fwd + *mc_bwd;
     TH1D mc_combined = *mc_fwd + *mc_bwd  + *sand_fwd + *sand_bwd;
+	//TH1D mc_combined = *mc_fwd + *mc_bwd;
 
     std::cout << sample << " " << mc_fwd->Integral() << " " << mc_bwd->Integral() << std::endl;
     std::cout << mc_combined.GetNbinsX() << std::endl;
@@ -512,6 +516,8 @@ for (int i = 19; i < 20; i++){
     bestfit_parameters[i][2] = xmu_b;
     bestfit_parameters[i][3] = fraction_p;
     bestfit_parameters[i][4] = fraction_m;
+	bestfit_parameters[i][5] = xsigma_b;
+	bestfit_parameters[i][6] = bestchi2ndf;
     // std::cout << xsigma_f << " " << xmu_f << " " <<xsigma_b << " " << xmu_b << std::endl;
    
     // std::cout << bestchi2ndf << std::endl;
@@ -585,7 +591,7 @@ for (int i = 19; i < 20; i++){
     legend->AddEntry(data, str_data.c_str(),"lep");
     legend->AddEntry(&mc_combined, Form("Nominal MC chi2 %.4f", nominal_chi2),"l");
     legend->AddEntry(best_stack,Form("Corrected MC chi2 %.4f", slip_chi2),"l");
-    legend->SetHeader(sample_names_thesis[i].c_str(), "l"); // option "C" allows to center the header
+    legend->SetHeader(sample_names[i].c_str(), "l"); // option "C" allows to center the header
     // gStyle->SetLegendTextSize(5);
 
     legend->Draw();
@@ -650,13 +656,13 @@ for (int i = 19; i < 20; i++){
 
     // }
 
-    cout << sample_names[i] << " Sigma: " << bestfit_parameters[i][0] << "Mu F: " << bestfit_parameters[i][1] << "Mu B: " << bestfit_parameters[i][2] << "Frac P: " << bestfit_parameters[i][3] << "Frac M: " << bestfit_parameters[i][4] << endl;
-    string result_summary_file = output_folder + string("output_summary");
+    cout << sample_names[i] << " Sigma F: " << bestfit_parameters[i][0] << " Sigma B: " << bestfit_parameters[i][5] << "Mu F: " << bestfit_parameters[i][1] << "Mu B: " << bestfit_parameters[i][2] << "Frac P: " << bestfit_parameters[i][3] << "Frac M: " << bestfit_parameters[i][4] << endl;
+    string result_summary_file = output_folder + string("output_summary.txt");
     std::ofstream myfile;
     myfile.open(result_summary_file.c_str(), std::ios_base::app);
     if (myfile.is_open())
     {
-        myfile << Form("%i %s Sigma: %.4f MuF:%.4f MuB:%.4f FP:%.4f FM%.4f \n", i, sample_names[i].c_str(), bestfit_parameters[i][0], bestfit_parameters[i][1], bestfit_parameters[i][2], bestfit_parameters[i][3], bestfit_parameters[i][4]);
+        myfile << Form("%i %s Sigma F: %.4f MuF: %.4f MuB: %.4f FP: %.4f FM: %.4f Corrχ2: %.4f\n", i, sample_names[i].c_str(), bestfit_parameters[i][0], bestfit_parameters[i][1], bestfit_parameters[i][2], bestfit_parameters[i][3], bestfit_parameters[i][4], bestfit_parameters[i][6]);
         myfile.close();
     }
     else cout << "Unable to open file";

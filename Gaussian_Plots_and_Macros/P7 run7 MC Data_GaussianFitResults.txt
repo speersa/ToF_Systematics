@@ -1,0 +1,552 @@
+//=================Fgd1Fwd_ToF_FGD1_FGD2================//
+Magnet:
+ Negative mean      -5.26 +- 0.00401
+ Negative sigma mean       1.87 +-  0.01
+ Positive mean       6.01 +- 0.0827
+ Positive sigma mean       14.8 +- 0.746
+
+//======================================================//
+Data:
+ Negative mean      -5.23 +- 0.0134
+ Negative sigma mean       2.44 +- 0.0382
+ Positive mean   1.07e-10 +- 0.0201
+ Positive sigma mean       80.3 +-  6.08
+
+//======================================================//
+Data-Magnet:
+ Negative mean     0.0282 +- 0.0174
+ Negative sigma mean      0.577 +- 0.0483
+ Positive mean      -6.01 +- 0.103
+ Positive sigma mean       65.5 +-  6.82
+
+//======================================================//
+
+//=================Fgd1Fwd_ToF_ECal_FGD1_track================//
+Magnet:
+ Negative mean      -8.41 +- 0.0705
+ Negative sigma mean        7.3 +-  0.34
+ Positive mean       9.04 +- 0.0116
+ Positive sigma mean       6.31 +- 0.0408
+
+//======================================================//
+Data:
+ Negative mean  -5.29e-09 +-  12.6
+ Negative sigma mean        268 +-   140
+ Positive mean          9 +- 0.0463
+ Positive sigma mean       9.36 +- 0.228
+
+//======================================================//
+Data-Magnet:
+ Negative mean       8.41 +-  12.6
+ Negative sigma mean        260 +-   140
+ Positive mean    -0.0381 +- 0.058
+ Positive sigma mean       3.05 +- 0.269
+
+//======================================================//
+
+//=================Fgd1Fwd_ToF_ECal_FGD1_shower================//
+Magnet:
+ Negative mean      -8.75 +- 0.087
+ Negative sigma mean       11.2 +- 0.554
+ Positive mean       8.01 +- 0.0366
+ Positive sigma mean       8.23 +- 0.162
+
+//======================================================//
+Data:
+ Negative mean      -6.56 +-  0.43
+ Negative sigma mean         13 +-  3.19
+ Positive mean        8.5 +- 0.139
+ Positive sigma mean       12.7 +- 0.878
+
+//======================================================//
+Data-Magnet:
+ Negative mean       2.19 +- 0.517
+ Negative sigma mean       1.75 +-  3.74
+ Positive mean      0.493 +- 0.175
+ Positive sigma mean       4.51 +-  1.04
+
+//======================================================//
+
+//=================Fgd1Fwd_ToF_DSECal_FGD1_track================//
+Magnet:
+ Negative mean     -0.731 +-  10.6
+ Negative sigma mean       1.27 +-  2.26
+ Positive mean       9.39 +-  14.1
+ Positive sigma mean        1.5 +-   2.5
+
+//======================================================//
+Data:
+ Negative mean      -8.75 +-  1.11
+ Negative sigma mean    0.00986 +- 0.00562
+ Positive mean       10.2 +- 0.0176
+ Positive sigma mean       2.39 +- 0.0469
+
+//======================================================//
+Data-Magnet:
+ Negative mean      -8.02 +-  11.7
+ Negative sigma mean       1.26 +-  2.26
+ Positive mean      0.849 +-  14.1
+ Positive sigma mean       0.89 +-  2.54
+
+//======================================================//
+
+//=================Fgd1Fwd_ToF_DSECal_FGD1_shower================//
+Magnet:
+ Negative mean      -6.73 +- 0.0427
+ Negative sigma mean     0.0357 +- 0.00624
+ Positive mean       9.45 +- 0.0232
+ Positive sigma mean       2.12 +- 0.0561
+
+//======================================================//
+Data:
+ Negative mean       -6.8 +-  3.57
+ Negative sigma mean       37.5 +-    40
+ Positive mean         11 +- 0.0958
+ Positive sigma mean       4.19 +- 0.325
+
+//======================================================//
+Data-Magnet:
+ Negative mean    -0.0735 +-  3.61
+ Negative sigma mean       37.4 +-    40
+ Positive mean       1.53 +- 0.119
+ Positive sigma mean       2.07 +- 0.381
+
+//======================================================//
+
+//=================Fgd1Bwd_ToF_P0D_FGD1_track================//
+Magnet:
+ Negative mean      -6.37 +- 0.00772
+ Negative sigma mean       4.54 +- 0.0279
+ Positive mean       6.08 +- 0.0767
+ Positive sigma mean       8.92 +- 0.521
+
+//======================================================//
+Data:
+ Negative mean      -7.59 +- 0.0246
+ Negative sigma mean        5.9 +- 0.112
+ Positive mean   1.77e-10 +- 0.112
+ Positive sigma mean       29.9 +-  2.84
+
+//======================================================//
+Data-Magnet:
+ Negative mean      -1.22 +- 0.0323
+ Negative sigma mean       1.36 +-  0.14
+ Positive mean      -6.08 +- 0.189
+ Positive sigma mean       20.9 +-  3.36
+
+//======================================================//
+
+//=================Fgd1Bwd_ToF_P0D_FGD1_shower================//
+Magnet:
+ Negative mean      -6.47 +-  0.02
+ Negative sigma mean       6.08 +- 0.0941
+ Positive mean       4.73 +- 0.152
+ Positive sigma mean          9 +- 0.677
+
+//======================================================//
+Data:
+ Negative mean      -7.53 +- 0.0726
+ Negative sigma mean       10.4 +- 0.409
+ Positive mean        4.2 +- 0.535
+ Positive sigma mean       7.78 +-  3.37
+
+//======================================================//
+Data-Magnet:
+ Negative mean      -1.06 +- 0.0926
+ Negative sigma mean       4.28 +- 0.504
+ Positive mean     -0.536 +- 0.687
+ Positive sigma mean       1.22 +-  4.05
+
+//======================================================//
+
+//=================Fgd1Bwd_ToF_ECal_FGD1_track================//
+Magnet:
+ Negative mean      -6.55 +- 0.042
+ Negative sigma mean       4.73 +- 0.163
+ Positive mean       6.88 +- 0.121
+ Positive sigma mean       7.43 +- 0.578
+
+//======================================================//
+Data:
+ Negative mean      -8.09 +-  0.23
+ Negative sigma mean       5.76 +-   1.1
+ Positive mean      0.172 +-  18.7
+ Positive sigma mean        217 +-   171
+
+//======================================================//
+Data-Magnet:
+ Negative mean      -1.54 +- 0.273
+ Negative sigma mean       1.04 +-  1.26
+ Positive mean      -6.71 +-  18.8
+ Positive sigma mean        209 +-   172
+
+//======================================================//
+
+//=================Fgd1Bwd_ToF_ECal_FGD1_shower================//
+Magnet:
+ Negative mean      -6.87 +- 0.0686
+ Negative sigma mean       7.93 +- 0.343
+ Positive mean          6 +- 0.174
+ Positive sigma mean       5.54 +- 0.748
+
+//======================================================//
+Data:
+ Negative mean      -6.39 +- 0.303
+ Negative sigma mean       8.39 +-  1.67
+ Positive mean      0.583 +-  14.4
+ Positive sigma mean        221 +-   241
+
+//======================================================//
+Data-Magnet:
+ Negative mean      0.481 +- 0.372
+ Negative sigma mean      0.462 +-  2.02
+ Positive mean      -5.42 +-  14.5
+ Positive sigma mean        216 +-   242
+
+//======================================================//
+
+//=================Fgd1HAFwd_ToF_ECal_FGD1_track================//
+Magnet:
+ Negative mean      -3.36 +- 0.0771
+ Negative sigma mean        4.7 +- 0.334
+ Positive mean       5.08 +- 0.0148
+ Positive sigma mean       3.43 +- 0.0515
+
+//======================================================//
+Data:
+ Negative mean  -5.98e-10 +- 0.245
+ Negative sigma mean       50.9 +-  15.5
+ Positive mean       5.86 +- 0.0753
+ Positive sigma mean       6.78 +- 0.339
+
+//======================================================//
+Data-Magnet:
+ Negative mean       3.36 +- 0.322
+ Negative sigma mean       46.2 +-  15.8
+ Positive mean      0.777 +- 0.0901
+ Positive sigma mean       3.35 +-  0.39
+
+//======================================================//
+
+//=================Fgd1HAFwd_ToF_ECal_FGD1_shower================//
+Magnet:
+ Negative mean      -4.26 +- 0.068
+ Negative sigma mean       5.77 +- 0.341
+ Positive mean       4.52 +- 0.0373
+ Positive sigma mean       3.67 +- 0.146
+
+//======================================================//
+Data:
+ Negative mean   -3.2e-10 +- 0.295
+ Negative sigma mean       29.2 +-  6.17
+ Positive mean       5.94 +- 0.265
+ Positive sigma mean       5.53 +-  1.11
+
+//======================================================//
+Data-Magnet:
+ Negative mean       4.26 +- 0.363
+ Negative sigma mean       23.4 +-  6.51
+ Positive mean       1.42 +- 0.302
+ Positive sigma mean       1.85 +-  1.26
+
+//======================================================//
+
+//=================Fgd1HABwd_ToF_ECal_FGD1_track================//
+Magnet:
+ Negative mean      -3.91 +- 0.0148
+ Negative sigma mean       2.64 +- 0.0465
+ Positive mean       3.67 +- 0.051
+ Positive sigma mean       3.03 +- 0.197
+
+//======================================================//
+Data:
+ Negative mean      -4.02 +- 0.108
+ Negative sigma mean       6.55 +- 0.537
+ Positive mean   2.81e-10 +- 0.254
+ Positive sigma mean       70.1 +-  15.2
+
+//======================================================//
+Data-Magnet:
+ Negative mean     -0.115 +- 0.123
+ Negative sigma mean       3.91 +- 0.584
+ Positive mean      -3.67 +- 0.305
+ Positive sigma mean         67 +-  15.4
+
+//======================================================//
+
+//=================Fgd1HABwd_ToF_ECal_FGD1_shower================//
+Magnet:
+ Negative mean       -4.1 +- 0.0273
+ Negative sigma mean       4.26 +- 0.112
+ Positive mean       3.75 +- 0.109
+ Positive sigma mean       3.86 +- 0.441
+
+//======================================================//
+Data:
+ Negative mean      -2.65 +-  0.14
+ Negative sigma mean       10.3 +- 0.828
+ Positive mean       4.28 +-  11.9
+ Positive sigma mean   5.44e+07 +- 6.53e+10
+
+//======================================================//
+Data-Magnet:
+ Negative mean       1.45 +- 0.167
+ Negative sigma mean       6.03 +-  0.94
+ Positive mean      0.534 +-    12
+ Positive sigma mean   5.44e+07 +- 6.53e+10
+
+//======================================================//
+
+//=================Fgd2Fwd_ToF_ECal_FGD2_track================//
+Magnet:
+ Negative mean      -8.29 +- 0.0755
+ Negative sigma mean       7.64 +- 0.401
+ Positive mean       7.01 +- 0.0189
+ Positive sigma mean       4.97 +- 0.0645
+
+//======================================================//
+Data:
+ Negative mean      -7.89 +- 0.501
+ Negative sigma mean       12.6 +-  4.65
+ Positive mean       6.55 +- 0.0822
+ Positive sigma mean       9.83 +- 0.488
+
+//======================================================//
+Data-Magnet:
+ Negative mean      0.403 +- 0.576
+ Negative sigma mean       5.01 +-  5.05
+ Positive mean     -0.461 +- 0.101
+ Positive sigma mean       4.86 +- 0.552
+
+//======================================================//
+
+//=================Fgd2Fwd_ToF_ECal_FGD2_shower================//
+Magnet:
+ Negative mean      -8.29 +- 0.0855
+ Negative sigma mean       10.4 +- 0.544
+ Positive mean       6.28 +- 0.0453
+ Positive sigma mean       6.06 +- 0.198
+
+//======================================================//
+Data:
+ Negative mean      -6.76 +- 0.446
+ Negative sigma mean       11.5 +-  3.32
+ Positive mean        6.4 +- 0.199
+ Positive sigma mean       11.7 +-  1.34
+
+//======================================================//
+Data-Magnet:
+ Negative mean       1.53 +- 0.531
+ Negative sigma mean       1.05 +-  3.86
+ Positive mean      0.119 +- 0.244
+ Positive sigma mean       5.67 +-  1.54
+
+//======================================================//
+
+//=================Fgd2Fwd_ToF_DSECal_FGD2_track================//
+Magnet:
+ Negative mean      -6.01 +- 0.151
+ Negative sigma mean       11.3 +-  1.19
+ Positive mean       5.15 +- 0.00466
+ Positive sigma mean       1.88 +- 0.0119
+
+//======================================================//
+Data:
+ Negative mean  -1.51e-08 +- 0.166
+ Negative sigma mean        187 +-  65.3
+ Positive mean       5.49 +- 0.0156
+ Positive sigma mean       2.61 +- 0.0462
+
+//======================================================//
+Data-Magnet:
+ Negative mean       6.01 +- 0.317
+ Negative sigma mean        176 +-  66.5
+ Positive mean      0.345 +- 0.0203
+ Positive sigma mean      0.732 +- 0.0581
+
+//======================================================//
+
+//=================Fgd2Fwd_ToF_DSECal_FGD2_shower================//
+Magnet:
+ Negative mean      -7.61 +-  0.07
+ Negative sigma mean        8.4 +- 0.387
+ Positive mean       4.71 +- 0.0114
+ Positive sigma mean       2.34 +-  0.03
+
+//======================================================//
+Data:
+ Negative mean       -4.9 +- 0.403
+ Negative sigma mean       11.8 +-  3.26
+ Positive mean       5.85 +- 0.0439
+ Positive sigma mean       3.47 +- 0.138
+
+//======================================================//
+Data-Magnet:
+ Negative mean        2.7 +- 0.473
+ Negative sigma mean        3.4 +-  3.64
+ Positive mean       1.14 +- 0.0553
+ Positive sigma mean       1.13 +- 0.168
+
+//======================================================//
+
+//=================Fgd2Bwd_ToF_FGD1_FGD2================//
+Magnet:
+ Negative mean      -5.55 +- 0.0073
+ Negative sigma mean       3.02 +- 0.0225
+ Positive mean       6.31 +- 0.0767
+ Positive sigma mean         12 +- 0.646
+
+//======================================================//
+Data:
+ Negative mean      -5.03 +- 0.0188
+ Negative sigma mean       3.25 +- 0.0677
+ Positive mean   5.82e-11 +- 0.0211
+ Positive sigma mean       83.9 +-  8.31
+
+//======================================================//
+Data-Magnet:
+ Negative mean      0.517 +- 0.0261
+ Negative sigma mean      0.227 +- 0.0902
+ Positive mean      -6.31 +- 0.0978
+ Positive sigma mean       71.9 +-  8.95
+
+//======================================================//
+
+//=================Fgd2Bwd_ToF_ECal_FGD2_track================//
+Magnet:
+ Negative mean       -8.6 +- 0.0152
+ Negative sigma mean       5.17 +- 0.0552
+ Positive mean       7.75 +- 0.0835
+ Positive sigma mean       6.98 +- 0.387
+
+//======================================================//
+Data:
+ Negative mean       -8.7 +- 0.076
+ Negative sigma mean       9.27 +- 0.364
+ Positive mean       7.74 +-  0.73
+ Positive sigma mean       19.5 +-  7.58
+
+//======================================================//
+Data-Magnet:
+ Negative mean     -0.101 +- 0.0912
+ Negative sigma mean        4.1 +- 0.419
+ Positive mean     -0.011 +- 0.814
+ Positive sigma mean       12.5 +-  7.97
+
+//======================================================//
+
+//=================Fgd2Bwd_ToF_ECal_FGD2_shower================//
+Magnet:
+ Negative mean       -8.9 +- 0.0316
+ Negative sigma mean       9.74 +- 0.164
+ Positive mean       7.13 +- 0.142
+ Positive sigma mean       7.76 +-  0.73
+
+//======================================================//
+Data:
+ Negative mean      -7.48 +- 0.132
+ Negative sigma mean       12.9 +- 0.736
+ Positive mean       9.28 +-  1.37
+ Positive sigma mean       13.1 +-  6.18
+
+//======================================================//
+Data-Magnet:
+ Negative mean       1.41 +- 0.163
+ Negative sigma mean       3.18 +-   0.9
+ Positive mean       2.15 +-  1.52
+ Positive sigma mean       5.34 +-  6.91
+
+//======================================================//
+
+//=================Fgd2HAFwd_ToF_ECal_FGD2_track================//
+Magnet:
+ Negative mean       -3.1 +- 0.106
+ Negative sigma mean       5.46 +- 0.438
+ Positive mean       4.73 +- 0.014
+ Positive sigma mean       2.77 +- 0.0433
+
+//======================================================//
+Data:
+ Negative mean  -8.37e-11 +- 0.885
+ Negative sigma mean         17 +-  3.56
+ Positive mean       5.06 +- 0.0907
+ Positive sigma mean       5.61 +- 0.345
+
+//======================================================//
+Data-Magnet:
+ Negative mean        3.1 +- 0.991
+ Negative sigma mean       11.6 +-     4
+ Positive mean      0.329 +- 0.105
+ Positive sigma mean       2.83 +- 0.388
+
+//======================================================//
+
+//=================Fgd2HAFwd_ToF_ECal_FGD2_shower================//
+Magnet:
+ Negative mean      -4.54 +- 0.0868
+ Negative sigma mean       4.91 +- 0.378
+ Positive mean       4.53 +- 0.0431
+ Positive sigma mean       3.62 +- 0.158
+
+//======================================================//
+Data:
+ Negative mean      -4.74 +- 0.634
+ Negative sigma mean       4.63 +-  5.52
+ Positive mean       4.71 +- 0.317
+ Positive sigma mean       10.2 +-  2.08
+
+//======================================================//
+Data-Magnet:
+ Negative mean     -0.201 +- 0.721
+ Negative sigma mean      0.284 +-   5.9
+ Positive mean      0.185 +-  0.36
+ Positive sigma mean       6.55 +-  2.24
+
+//======================================================//
+
+//=================Fgd2HABwd_ToF_ECal_FGD2_track================//
+Magnet:
+ Negative mean      -4.81 +- 0.0167
+ Negative sigma mean       4.29 +- 0.059
+ Positive mean       4.06 +- 0.0654
+ Positive sigma mean       3.51 +- 0.248
+
+//======================================================//
+Data:
+ Negative mean      -4.44 +- 0.0993
+ Negative sigma mean       7.14 +- 0.489
+ Positive mean       4.85 +- 0.797
+ Positive sigma mean       11.5 +-  8.32
+
+//======================================================//
+Data-Magnet:
+ Negative mean      0.373 +- 0.116
+ Negative sigma mean       2.85 +- 0.548
+ Positive mean      0.788 +- 0.863
+ Positive sigma mean          8 +-  8.57
+
+//======================================================//
+
+//=================Fgd2HABwd_ToF_ECal_FGD2_shower================//
+Magnet:
+ Negative mean      -5.32 +- 0.0343
+ Negative sigma mean       5.54 +- 0.142
+ Positive mean       4.28 +- 0.144
+ Positive sigma mean       3.93 +- 0.495
+
+//======================================================//
+Data:
+ Negative mean      -3.68 +- 0.156
+ Negative sigma mean       10.1 +- 0.919
+ Positive mean       10.8 +-  3.88
+ Positive sigma mean       20.5 +-  31.4
+
+//======================================================//
+Data-Magnet:
+ Negative mean       1.64 +-  0.19
+ Negative sigma mean        4.6 +-  1.06
+ Positive mean       6.55 +-  4.03
+ Positive sigma mean       16.6 +-  31.9
+
+//======================================================//
+

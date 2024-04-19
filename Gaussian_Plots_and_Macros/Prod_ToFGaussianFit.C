@@ -8,15 +8,18 @@
 //
 ////////////////////////////////////////////////////////////
 
+#include <iostream>
+#include <cmath>
+
 void dofit(TH1F *h_tof_magnet, TH1F *h_tof_data, TCanvas* c, TString varname, TString Xlabel);
 
-int mc_color = 4; //Plot colour for whatever is loaded as "run4air_mc"
-int data_color = 3; //Plot colour for whatever is loaded as "run4air_data"
+int mc_color = 2; //Plot colour for whatever is loaded as "run4air_mc"
+int data_color = 6; //Plot colour for whatever is loaded as "run4air_data"
 
-const char * legend_entry_1 = "P7 MC"; //Legend entry for whatever is loaded as "run4air_mc"
-const char * legend_entry_2 = "P7 Data"; //Legend entry for whatever is loaded as "run4air_data"
+const char * legend_entry_1 = "P6 MC"; //Legend entry for whatever is loaded as "run4air_mc"
+const char * legend_entry_2 = "P6 Data"; //Legend entry for whatever is loaded as "run4air_data"
 
-const char * pdf_title = "P7 run8water MC Data";
+const char * pdf_title = "P6 run7 MC Data";
 
 void Prod_ToFGaussianFit(){
 
@@ -25,7 +28,7 @@ void Prod_ToFGaussianFit(){
   //draw.SetStackFillStyle(3254);
   
   ofstream file_output; //Horrid little bit of code to make the append part at the bottom work better
-  file_output.open("Prod_GaussianFitResults.txt");
+  file_output.open(Form("%s_GaussianFitResults.txt", pdf_title));
   file_output.close();
 
   gROOT->SetBatch();
@@ -43,8 +46,8 @@ void Prod_ToFGaussianFit(){
   //DataSample* run2water_mc   = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/MC/run2water/ToFSyst_run2watermc.root");
   //DataSample* run3_mc        = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/MC/run3/ToFSyst_run3mc.root");
   
-  DataSample* run4air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P7_V12_FHC_run8water_MC_default_settings_OFFICIAL.root");
- //DataSample* run4air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run8water_MC_default_settings_OFFICIAL.root");
+ //DataSample* run4air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P7_V12_FHC_run7_MC_default_settings_OFFICIAL.root");
+ DataSample* run4air_mc     = new DataSample("/data/aspeers/ToF_Systematics/P6AA_RHC_run7_MC_default_settings_OFFICIAL.root");
   
   //DataSample* run4water_mc   = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/MC/run4water/ToFSyst_run4watermc.root");
   //DataSample* run5c_mc       = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/MC/run5c/ToFSyst_run5cmc.root");
@@ -61,8 +64,8 @@ void Prod_ToFGaussianFit(){
   //DataSample* run2water_data = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/data/run2water/ToFSyst_run2waterdata.root");
  // DataSample* run3_data      = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/data/run3/ToFSyst_run3data.root");
  
- //DataSample* run4air_data   = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run8water_Data_default_settings_OFFICIAL.root");
-  DataSample* run4air_data   = new DataSample("/data/aspeers/ToF_Systematics/P7_V13_FHC_run8water_Data_default_settings_OFFICIAL.root");
+ //DataSample* run4air_data   = new DataSample("/data/aspeers/ToF_Systematics/P7_V13_FHC_run7_Data_default_settings_OFFICIAL.root");
+ DataSample* run4air_data   = new DataSample("/data/aspeers/ToF_Systematics/P6AA_RHC_run7_Data_default_settings_OFFICIAL.root");
   
  // DataSample* run4water_data = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/data/run4water/ToFSyst_run4waterdata.root");
  // DataSample* run5c_data     = new DataSample("/lustrehome/riccioc/hl2_output/ToFSyst/FGD/data/run5c/ToFSyst_run5cdata.root");
@@ -595,13 +598,24 @@ void dofit(TH1F *h_tof_magnet, TH1F *h_tof_data, TCanvas* c, TString varname, TS
   //ofstream total_output
 
   //file_output.open(Form("prod_gaussian_plots/FitResults_%s.txt",varname.Data()));
-  file_output.open("Prod_GaussianFitResults.txt",std::ios_base::app);
+  file_output.open(Form("%s_GaussianFitResults.txt",pdf_title),std::ios_base::app);
 
   backup = cout.rdbuf();         // back up cout's streambuf
   psbuf = file_output.rdbuf();   // get file's streambuf
   cout.rdbuf(psbuf);             // assign streambuf to cout
 
   //cout<<fixed;
+  /*
+  cout<<setprecision(3);
+  cout<<"//================="<<varname.Data()<<"================//"<<endl;
+  cout<<"Correction:"<<endl;
+  cout<<setw(5)<< " Negative mean "       <<setw(10)<<neg_mean_data-neg_mean_magnet<<" +- "<<setw(5)<<neg_meanerr_data+neg_meanerr_magnet<<endl;
+  cout<<setw(5)<< " Negative sigma mean " <<setw(10)<<TMath::Sqrt(TMath::Power(neg_sigma_data,2)-TMath::Power(neg_sigma_magnet,2))<<" +- "<<setw(5)<<neg_sigmaerr_data+neg_sigmaerr_magnet<<endl;
+  cout<<setw(5)<< " Positive mean "       <<setw(10)<<pos_mean_data-pos_mean_magnet<<" +- "<<setw(5)<<pos_meanerr_data+pos_meanerr_magnet<<endl;
+  cout<<setw(5)<< " Positive sigma mean " <<setw(10)<<TMath::Sqrt(TMath::Power(pos_sigma_data,2)-TMath::Power(pos_sigma_magnet,2))<<" +- "<<setw(5)<<pos_sigmaerr_data+pos_sigmaerr_magnet<<endl;
+  cout<<endl;
+  cout<<"//======================================================//"<<endl;
+	*/
   cout<<setprecision(3);
   cout<<"//================="<<varname.Data()<<"================//"<<endl;
   cout<<"Magnet:"<<endl;

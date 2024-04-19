@@ -34,6 +34,8 @@ float TStart = -29.5;
 float Tend = 30.0;
 
 void extract_tof_from_microtree_data_draw(){
+	
+	gROOT->SetBatch();
 
   //=== Inizialize DrawingTools                                                                         
   DrawingTools draw("/home/t2k/aspeers/PROD7_validation/testing/MultiPiAnalysis_TEST.root");//option 3 for T2KStyle = publication/paper
@@ -42,10 +44,10 @@ void extract_tof_from_microtree_data_draw(){
   //=== Inizialize Experiment     
   Experiment exp("nd280");
 
-  SampleGroup run8air("run8air");
+ // SampleGroup run8air("run8air");
  // SampleGroup run8water("run8water");
 
-  DataSample* run8air_data     = new DataSample("/data/aspeers/ToF_Systematics/P6AA_FHC_run4air_Data_default_settings_OFFICIAL.root");
+  DataSample* run8air_data     = new DataSample("/data/aspeers/ToF_Systematics/P7E_RHC_Data.root");
   SampleGroup run8air("run8air");
 
  // DataSample* run8water_data     = new DataSample("/data/yxu/general_outputs/microtrees/20220620_validation_data/run8_water.root");
